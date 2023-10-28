@@ -1,0 +1,50 @@
+create database loan_application;
+use loan_application;
+
+create table employee_table(employee_id int primary key auto_increment, employee_name varchar(20), email_id varchar(20), password varchar(20))auto_increment=1000;
+
+create table credit_score_table(pan int primary key, score int);
+
+CREATE TABLE customer_table (customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(20),
+    last_name VARCHAR(20),
+    email_id VARCHAR(50),
+    password VARCHAR(20),
+    phone INT(10),
+    pan INT
+) AUTO_INCREMENT=8000;
+
+CREATE TABLE login_logs (
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(20),
+    log VARCHAR(20),
+    role VARCHAR(20),
+    log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+create table loan_table(
+	loan_id INT PRIMARY KEY AUTO_INCREMENT,
+	loan_type VARCHAR(20)
+);
+
+
+CREATE TABLE loan_application (
+    application_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT,
+    loan_id INT,
+    status VARCHAR(20),
+    FOREIGN KEY (customer_id) REFERENCES customer_table(customer_id),
+    FOREIGN KEY (loan_id) REFERENCES loan_table(loan_id)
+);
+
+
+
+INSERT INTO loan_table (loan_type) VALUES ('Home Loan');
+INSERT INTO loan_table (loan_type) VALUES ('Car Loan');
+INSERT INTO loan_table (loan_type) VALUES ('Personal Loan');
+INSERT INTO loan_table (loan_type) VALUES ('Gold Loan');
+INSERT INTO loan_table (loan_type) VALUES ('Business Loan');
+INSERT INTO loan_table (loan_type) VALUES ('Educational Loan');
+
+
+insert into employee_table (employee_id, employee_name, email_id, password) values(1001, 'admin', 'admin@google.com', 'adminPassword');
